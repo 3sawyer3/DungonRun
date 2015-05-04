@@ -5,7 +5,8 @@ var moveUp = false;
 var moveDown = false;
 var moveRight = false;
 var moveLeft = false;
-
+var sprint = true;
+var spd = 2;
 
 function Start() {}
 
@@ -19,7 +20,7 @@ function Update() {
         moveUp = false;
     }
     if (moveUp) {
-        transform.Translate(Vector3.up * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.up * Time.deltaTime * spd, Space.World);
     }
     //Move Down
     if (Input.GetKeyDown("s")) {
@@ -53,5 +54,12 @@ function Update() {
     }
     if (moveLeft) {
         transform.Translate(Vector3.left * Time.deltaTime, Space.World);
+    }
+    //Sprint
+    if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        spd = 4;
+    }
+    if (Input.GetKeyUp(KeyCode.LeftShift)) {
+        spd = 2;
     }
 }
